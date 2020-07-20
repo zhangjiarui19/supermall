@@ -43,7 +43,7 @@
         scrolling: false, // 是否正在滚动
       }
     },
-    mounted: function () {
+    mounted : function () {
       // 1.操作DOM, 在前后添加Slide
       setTimeout(() => {
         this.handleDom();
