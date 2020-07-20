@@ -4,6 +4,7 @@
       <div slot="center">购物街</div>
     </nav-bar>
     <home-swiper :banners="banners.list"></home-swiper>
+    <recommend-view :recommends="recommend.list"></recommend-view>
   </div>
 </template>
 
@@ -11,11 +12,12 @@
   import NavBar from "components/common/navbar/NavBar";
   import HomeSwiper from "./ChildComps/HomeSwiper";
   import {getHomeMultidata} from "network/home";
+  import RecommendView from "./ChildComps/RecommendView";
   // import {swiper, swiperSlide} from 'vue-awesome-swiper'
 
   export default {
     name: "Home",
-    components: {HomeSwiper, NavBar,},
+    components: {RecommendView, HomeSwiper, NavBar,},
     data() {
       return {
         banners: [],
