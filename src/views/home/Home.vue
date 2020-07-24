@@ -115,7 +115,7 @@
 <script>
   import NavBar from "components/common/navbar/NavBar";
   import HomeSwiper from "./ChildComps/HomeSwiper";
-  import {getHomeMultidata} from "network/home";
+  import {getHomeMultidata, getHomeGoods} from "network/home";
   import RecommendView from "./ChildComps/RecommendView";
   import FeatureView from "./ChildComps/FeatureView";
   import TabControl from "../../components/content/tabControl/tabControl";
@@ -127,17 +127,32 @@
     data() {
       return {
         banners: [],
-        recommend: []
+        recommend: [],
+        goods: {
+          'pop': {page:0, list: []},
+          'new': {page:0, list: []},
+          'sell': {page:0, list: []},
+        },
       }
     },
     // 生命周期函数
     created() {
       // 发送网络请求
-      getHomeMultidata().then(res => {
-        // 垃圾回收机制
-        this.banners = res.data.banner;
-        this.recommend = res.data.recommend
-      })
+      this.getHomeMultidata()
+      // 首页商品信息
+      this.getHomeGoods()
+    },
+    methods: {
+      getHomeMultidata(){
+        getHomeMultidata().then(res => {
+          // 垃圾回收机制
+          this.banners = res.data.banner;
+          this.recommend = res.data.recommend
+        })
+      },
+      getHomeGoods(type, num) {
+        getHomeGoods(type, num).then()
+      }
     }
   }
 </script>
